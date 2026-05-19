@@ -11,7 +11,7 @@ class GameScene: SKScene {
     override func didMove(to view: SKView) {
         setuphero()
         setupslot()
-        print("Helo1")
+        print("Helo2")
     }
     
     func setuphero() {
