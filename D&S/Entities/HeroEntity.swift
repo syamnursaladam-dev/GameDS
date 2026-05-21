@@ -8,6 +8,7 @@ class HeroEntity: GKEntity {
         let entity = HeroEntity()
         entity.addComponent(SpriteComponent.make(node: node))
         entity.addComponent(IdleComponent.make(actionName: "idle"))
+        entity.addComponent(HealthComponent.make(stats: CharacterStatsPreset.hero))
         return entity
     }
 }

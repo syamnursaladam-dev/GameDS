@@ -7,11 +7,12 @@ class GameScene: SKScene {
     var hero: HeroEntity!
     var slot: SlotEntity!
     var slotmachine :[SlotEntity] = []
+    var hpBar: HPBarNode!
     
     override func didMove(to view: SKView) {
         setuphero()
         setupslot()
-        print("Helo2")
+        setupHpBar()
     }
     
     func setuphero() {
@@ -40,6 +41,18 @@ class GameScene: SKScene {
             spin?.spin()
             print("Slot \(i + 1): \(spin?.currentElement.rawValue ?? "nil")")
         }
+    }
+    
+    func setupHpBar() {
+        guard let hpNode = childNode(withName: "//Player_Hp") as? SKSpriteNode else {return}
+        guard let health = hero.component(ofType: HealthComponent.self) else {return}
+        
+        hpNode.isHidden = true
+        hpBar = HPBarNode.make()
+        hpBar.position = convert(.zero, from: hpNode)
+        hpBar.zPosition = hpNode.zPosition
+        addChild(hpBar)
+        hpBar.update(health: health)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
