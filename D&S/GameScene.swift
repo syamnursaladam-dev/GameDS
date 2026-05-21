@@ -3,46 +3,26 @@ import SpriteKit
 import GameplayKit
 
 class GameScene: SKScene {
-    
+
     var hero: HeroEntity!
-    var slot: SlotEntity!
-    var slotmachine :[SlotEntity] = []
-    
+    var slotmachine: [SlotEntity] = []
+    var hpBar: HPBarNode!
+
     override func didMove(to view: SKView) {
-        setuphero()
-        setupslot()
-        print("Helo2")
+        hero = HeroEntity.make(from: "Player", in: self)
+        slotmachine = SlotEntity.makeAll(from: "Slot", count: 3, in: self)
+        hpBar = HPBarNode.make(from: "Player_Hp", in: self, entity: hero)
+    }
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        spinAllSlots()
     }
     
-    func setuphero() {
-        guard let node = childNode(withName: "//Player") as? SKSpriteNode else {
-            print("Player node not found")
-            return
-        }
-        hero = HeroEntity.make(node: node)
-        hero.component(ofType: IdleComponent.self)?.start()
-    }
-    
-    func setupslot(){
-        for i in 1...3{
-            guard let node = childNode(withName: "//Slot_\(i)") as? SKSpriteNode else {
-                print("Slot_\(i) node not found")
-                return
-            }
-            slot = SlotEntity.setup(node: node)
-            slotmachine.append(slot)
-        }
-    }
-    
-    func spinallstol(){
+    // MARK: Func Spin Slot
+    func spinAllSlots() {
         for (i, slot) in slotmachine.enumerated() {
             let spin = slot.component(ofType: SpinComponent.self)
             spin?.spin()
             print("Slot \(i + 1): \(spin?.currentElement.rawValue ?? "nil")")
         }
-    }
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        spinallstol()
     }
 }

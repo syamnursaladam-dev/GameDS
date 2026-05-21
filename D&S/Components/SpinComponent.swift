@@ -14,18 +14,19 @@ class SpinComponent: GKComponent {
     var isSpinning: Bool = false
     
     let randomSource = GKRandomDistribution(lowestValue: 0, highestValue: Element.allCases.count - 1)
-    
+    // MARK: Initiate Component
     static func make() -> SpinComponent {
         let Component = SpinComponent()
         Component.currentElement = .fire
         return Component
         
     }
-    
+    // MARK: Func first node before spin
     override func didAddToEntity() {
         guard let sprite = entity?.component(ofType: SpriteComponent.self) else { return }
         sprite.node.texture = SKTexture(imageNamed: currentElement.rawValue)
     }
+    // MARK: Func Spin
 
     func spin(){
         if isSpinning { return }
@@ -50,7 +51,8 @@ class SpinComponent: GKComponent {
             self.isSpinning = false
         }
     }
-    
+    // MARK: Func Output spin
+
     func getResult() -> Element {
         return currentElement
     }
