@@ -10,7 +10,8 @@ class HPBarNode: SKNode {
 
     var background: SKSpriteNode!
     var fill: SKSpriteNode!
-// MARK: HP Node
+
+    // MARK: HP Node
     private static func build() -> HPBarNode {
         let node = HPBarNode()
 
@@ -25,9 +26,8 @@ class HPBarNode: SKNode {
 
         return node
     }
-    
-// MARK: Initiate Gamescene
 
+    // MARK: Initiate GameScene
     static func make(from nodeName: String, in scene: SKScene, entity: GKEntity?) -> HPBarNode? {
         guard let hpNode = scene.childNode(withName: "//\(nodeName)") as? SKSpriteNode,
               let health = entity?.component(ofType: HealthComponent.self) else { return nil }
@@ -40,9 +40,8 @@ class HPBarNode: SKNode {
         bar.update(health: health)
         return bar
     }
-    
-// MARK: HP Visual Status
 
+    // MARK: HP Visual Status
     func update(health: HealthComponent) {
         fill.xScale = health.hpPercent
 

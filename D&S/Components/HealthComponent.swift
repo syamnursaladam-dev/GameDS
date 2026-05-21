@@ -21,6 +21,7 @@ class HealthComponent: GKComponent {
     }
     // MARK: Initiate component
 
+
     static func make(stats: CharacterStats) -> HealthComponent {
         let component = HealthComponent()
         component.stats = stats
