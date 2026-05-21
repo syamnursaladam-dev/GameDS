@@ -19,9 +19,8 @@ class HealthComponent: GKComponent {
     var hpPercent: CGFloat {
         return CGFloat(stats.hp) / CGFloat(stats.maxHp)
     }
-    // MARK: Initiate component
 
-
+    // MARK: Initiate Component
     static func make(stats: CharacterStats) -> HealthComponent {
         let component = HealthComponent()
         component.stats = stats
