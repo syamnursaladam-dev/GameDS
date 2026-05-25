@@ -13,11 +13,7 @@ class SlotEntity: GKEntity {
     
     static func makeAll(from baseName: String, count: Int, in scene: SKScene) -> [SlotEntity] {
         return (1...count).compactMap { i in
-            guard let node = scene.childNode(withName: "//\(baseName)_\(i)") as? SKSpriteNode else {
-                print("\(baseName)_\(i) node not found")
-                return nil
-            }
-            return build(node: node)
+            (scene.childNode(withName: "//\(baseName)_\(i)") as? SKSpriteNode).map { build(node: $0) }
         }
     }
     

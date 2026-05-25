@@ -20,10 +20,7 @@ class EnemyEntity: GKEntity {
 
     // MARK: Initiate GameScene
     static func make(from nodeName: String, in scene: SKScene) -> EnemyEntity? {
-        guard let node = scene.childNode(withName: "//\(nodeName)") as? SKSpriteNode else {
-            print("\(nodeName) node not found")
-            return nil
-        }
+        guard let node = scene.childNode(withName: "//\(nodeName)") as? SKSpriteNode else { return nil }
         let entity = build(node: node)
         entity.component(ofType: IdleComponent.self)?.start()
         return entity

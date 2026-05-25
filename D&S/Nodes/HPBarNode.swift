@@ -29,7 +29,7 @@ class HPBarNode: SKNode {
 
     // MARK: Initiate GameScene
     static func make(from nodeName: String, in scene: SKScene, entity: GKEntity?) -> HPBarNode? {
-        guard let hpNode = scene.childNode(withName: "//\(nodeName)") as? SKSpriteNode,
+        guard let hpNode = scene.childNode(withName: "//\(nodeName)"),
               let health = entity?.component(ofType: HealthComponent.self) else { return nil }
 
         let bar = HPBarNode.build()

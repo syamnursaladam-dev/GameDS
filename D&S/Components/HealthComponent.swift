@@ -24,7 +24,6 @@ class HealthComponent: GKComponent {
     static func make(stats: CharacterStats) -> HealthComponent {
         let component = HealthComponent()
         component.stats = stats
-        print("Hello")
         return component
     }
 }
