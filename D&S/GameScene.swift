@@ -11,7 +11,7 @@ class GameScene: SKScene {
 
     override func didMove(to view: SKView) {
         hero = HeroEntity.make(from: "Player", in: self)
-        slotmachine = SlotEntity.makeAll(from: "Slot", count: 3, in: self)
+        slotmachine = SlotEntity.make(from: "Slot", in: self)
         hpBar = HPBarNode.make(from: "Player_Hp", in: self, entity: hero)
         atkBar = AtkBarNode.make(from: "Float_Damage", in: self, entity: hero)
     }

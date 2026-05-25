@@ -11,10 +11,13 @@ import GameplayKit
 class SlotEntity: GKEntity {
     // MARK: Initiate Gamescene
     
-    static func makeAll(from baseName: String, count: Int, in scene: SKScene) -> [SlotEntity] {
-        return (1...count).compactMap { i in
-            (scene.childNode(withName: "//\(baseName)_\(i)") as? SKSpriteNode).map { build(node: $0) }
+    static func make(from baseName: String, in scene: SKScene) -> [SlotEntity] {
+        var result: [SlotEntity] = []
+        for i in 1... {
+            guard let node = scene.childNode(withName: "//\(baseName)_\(i)") as? SKSpriteNode else { break }
+            result.append(build(node: node))
         }
+        return result
     }
     
     // MARK: Initiate Entity
